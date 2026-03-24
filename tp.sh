@@ -10,9 +10,27 @@ read respuesta
 
 case $respuesta in
     1) echo "Entorno creado"
-        mkdir -p EPNro1
-        mkdir -p EPNro1/Entrada
-        mkdir -p EPNro1/Salida
-        mkdir -p EPNro1/Procesado
+        mkdir -p ~/EPNro1
+        mkdir -p ~/EPNro1/Entrada
+        mkdir -p ~/EPNro1/Salida
+        mkdir -p ~/EPNro1/Procesado
+        mv consolidar.sh ~/EPNro1
         ;;
+    2) bash ~/EPNro1/consolidar.sh &
+        ;;
+    3) if [ -f ~/EPNro1/Salida/$FILENAME.txt ]; then
+            sort -n ~/EPNro1/Salida/$FILENAME.txt
+        else
+            echo "No existe"
+        fi
+        ;;
+    4) if [ -f ~/EPNro1/Salida/$FILENAME.txt ]; then
+            sort -nk5 ~/EPNro1/Salida/$FILENAME.txt | head
+        else
+            echo "No existe"
+        fi
+        ;;
+    5) echo "Ingrese el padron"
+        read padron
+        grep "^$padron" ~/EPNro1/Salida/$FILENAME.txt
 esac
