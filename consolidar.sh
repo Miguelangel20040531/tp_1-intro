@@ -10,3 +10,4 @@ for archivo in "$ENTRADA"/*.txt; do
         mv "$archivo" "$PROCESADO/"
     fi
 done
+echo "Proceso terminado"
